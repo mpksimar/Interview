@@ -1,0 +1,208 @@
+Var- Var declarations are globally scoped or locally scoped. 
+•	Global scope: When var is declared outside the function. That means it is available for use in the whole window. 
+•	Function/local scope: When var is declared within a function. That means it is accessible within a function.
+•	Hoisting of var: When variables and function declarations are moved to the top of their scope before code execution, is known as JS hoisting.
+Eg: console.log(sample);
+      var sample =”Hi there!”;
+It will be interpreted as: 
+      var sample;
+      console.log(‘sample’);//sample is not defined.
+      sample=”Hi there!”;
+
+
+Let- Let is preferred for variable declaration now. Let is block scoped. 
+· A block is a chunk of code bounded by {}. So a variable declared in a block with the let is only available for use within that block.
+	Eg: let section = “Try this!”;
+	       let count = 5;
+	       if(count>4){
+		let say =” all done”;
+		console.log(say);//”all done”
+		}
+		console.log(say);//say is not defined.
+	Here, we can see using say outside the block returns an error. This is because let variables are block scoped. 
+· Let can be updated but cannot be redeclared.
+· If same variable is defined in different scopes, it can be redeclared, because both instances are treated as different variables since they have different scopes.
+· Hoisting of let- Just like var, let declarations are hoisted to the top. 
+· Unlike var which is initialized as undefined, let keyword is not initialized. 
+
+
+Const- Variables declared with the const will maintain constant values. Const declarations are block scoped. 
+· Like let declarations, const declarations can only be accessed within its block. 
+· Const cannot be updated or re-declared.
+· Every const declaration must be initialized at the time of declaration.
+· This approach is different when it comes to objects declared with const.
+· While the const object cannot be updated, the properties of an object can be updated.
+· Just like let, const declarations are hoisted to the top but are not initialized. 
+	Eg: const PI=3.141592653589793 ;
+		PI=3.0;//throws an error
+		console.log(PI);
+Here, when we try to assign a new value to PI, or try to redeclare it as var or let, the code will throw an error. 
+
+
+Template Literals
+We can create strings without the need to concatenate the values. Template literals are enclosed by backticks(`). To interpolate a variable value, we will simply set the variable value inside a dollar sign and curly braces(${}).
+	Eg: var show= { name: "Friends"};
+		Console.log(`You are watching ${show.name}, 
+		and this is a comedy show
+		and very old. `);
+	O/P: You are watching Friends
+		and this is a comedy show
+		and very old.
+
+
+Arrow Functions
+This allows us to write shorter function syntax. Mostly behave like function expressions, but arrow functions are not hoisted like normal functions. They do not have their own this. 
+	Eg: Normal function:
+		var circleArea= function circleArea(r){
+			var PI=3.141592653589793;
+			var area= PI*r*r;
+			return area;
+			};
+			console.log(circleArea(2);
+		Arrow function:
+		
+			let circleArea= ( r )=> 3.14 * r * r;
+			console.log(circleArea(2));
+			
+	O/P: 12.56
+
+
+Declaring the spread and rest parameters
+In ES5, we can turn arrays into parameters using the apply() function. ES6 has the spread operator(…) for this purpose. The spread operator(…) can also be used as a rest parameter in functions to replace arguments. 
+	• Rest Parameter
+	//Rest Parameter
+	//It collects all the remaining elements into an array.
+	
+	var myName= ["Manpreet", "Kaur", "Simar"];
+	const[fname, ...lname]= myName;
+	console.log(fname);
+	console.log(lname);
+	
+	Output
+	"Manpreet"
+	["Kaur", "Simar"]
+	
+	//In above example those three dots collected the remaining elements into a new sub array.
+	
+	
+	• Spread Operator
+	//Spread Operator
+	//It unpacks the collected element into single element
+	
+	var myName= ["Manpreet", "Kaur", "Simar"];
+	var newArr= [...myName, "UI", "26"];
+	console.log(newArr);
+	
+	Output
+	["Manpreet", "Kaur", "Simar", "UI", "26"]
+
+
+Enhanced object properties
+ES6 introduces a concept called array destructuring which is a way of initializing variables at once. 
+Eg:  var[x,y] =['a','b'];
+	It is the same as below:
+	var x= 'a';
+	var y='b';
+	Array destructuring can also be performed to swap values at once without the need to create temp variables as follows: 
+	
+	[x, y] = [y, x];
+	
+	It is the same as below:
+	
+	var temp= x;
+	x = y;
+	y = temp;
+	
+There is also another functionality called property shorthand, another way of performing destructuring of objects.
+
+Eg:  var [x, y]= ['a', 'b'];
+        var obj= {x, y};
+        console.log(obj); 
+
+O/P: {x: "a", "b"}
+
+	It is the same as below:
+	var x = 'a';
+	var y = 'b';
+	var obj2 = { x: x, y: y }; 
+	console.log(obj2); 
+	
+O/P:  { x: "a", y: "b" } 
+
+The last functionality is called the method property. This allows us to declare functions inside objects as if they were properties. 
+	
+Eg: var hello =
+ {  name : 'abcdef', 
+ printHello(){ 
+ console.log('Hello');
+	  } 
+	} 
+	console.log(hello.printHello());
+	
+O/P: Hello
+	
+	It is the same as below:
+	
+	var hello = {
+	  name: 'abcdef',
+	  printHello: function printHello() { 
+	 console.log('Hello'); 
+	 } 
+	};
+	
+O/P: Hello
+
+
+Object Oriented Programming with classes
+
+The difference between class and function and class declarations is that function declarations are hoisted and class declarations are not. We need to declare class and then access it, otherwise code will throw ReferenceError.
+
+Class Declarations
+
+To declare a class, use the class keyword with the name of the class.
+
+class Rectangle {
+	constructor(height, width){
+		this.height= height;
+		this.width= width;
+	}
+}
+
+Class Expressions
+
+Another way to define a class. Can be named or unnamed. 
+
+Let Rectangle= class{
+	constructor(height, width){
+		this.height= height;
+		this.width= width;
+	}
+};
+
+Console.log(Rectangle.name);
+
+O/P: "Rectangle"
+
+Constructor
+
+A special method for creating and initializing an object created with a class. A constructor can use the super keyword to call the constructor of the super class. 
+
+class Rectangle{
+  constructor(height, width){
+  this.height= height;
+  this.width= width;
+  }
+  
+  //getter
+  get area(){
+  return this.calArea();
+  }
+  
+  //method
+  calArea(){
+  return this.height * this.width;
+  }
+}
+
+  const square= new Rectangle(10, 10);
+  console.log(square.area); 
